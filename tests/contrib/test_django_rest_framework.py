@@ -152,6 +152,8 @@ class TestMoneyField:
             (Money(950, "NOK"), "Ensure this value is less than or equal to NOK900.00."),
             (Money(5, "SEK"), "Ensure this value is greater than or equal to 10."),
             (Money(1600, "SEK"), "Ensure this value is less than or equal to 1500."),
+            (Money(10, "DKK"), "Ensure this value is greater than or equal to 50."),
+            (Money(2500, "SEK"), "Ensure this value is less than or equal to 2000."),
         ),
     )
     def test_model_validators(self, value, error):
