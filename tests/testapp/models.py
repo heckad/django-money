@@ -40,6 +40,14 @@ def get_currency_choices():
     return [(code, code) for code in a_list]
 
 
+def get_min_value_validator():
+    return Money(50, "DKK")
+
+
+def get_max_value_validator():
+    return Money(2000, "DKK")
+
+
 class ModelWithVanillaMoneyField(models.Model):
     money = MoneyField(max_digits=10, decimal_places=2)
     second_money = MoneyField(max_digits=10, decimal_places=2, default=0.0, default_currency="EUR")
@@ -209,6 +217,8 @@ class ValidatedMoneyModel(models.Model):
             MaxMoneyValidator({"EUR": 1000, "USD": 500}),
             MinMoneyValidator(Money(500, "NOK")),
             MaxMoneyValidator(Money(900, "NOK")),
+            MinMoneyValidator(get_min_value_validator),
+            MaxMoneyValidator(get_max_value_validator),
             MinMoneyValidator(10),
             MaxMoneyValidator(1500),
         ],
